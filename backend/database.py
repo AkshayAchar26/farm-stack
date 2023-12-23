@@ -21,8 +21,8 @@ async def create_todo(todo : Todo):
     await collection.insert_one(todo)
     return todo
 
-async def update_todo(title:str,desc:str):
-    await collection.update_one({'title':title},{"$set":{'description':desc}})
+async def update_todo(title:str,description:str):
+    await collection.update_one({'title':title},{"$set":{'description':description}})
     result = await collection.find_one({'title':title})
     return result
 
