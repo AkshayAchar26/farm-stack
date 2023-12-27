@@ -1,7 +1,12 @@
 from model import Todo
 import motor.motor_asyncio
+from bson.binary import UuidRepresentation
+from config import get_settings
 
-client = motor.motor_asyncio.AsyncIOMotorClient("mongodb+srv://akshay:7019538585@akshay.cd8zyjt.mongodb.net/")
+settings = get_settings()
+mongo_url = settings.mongo_url
+
+client = motor.motor_asyncio.AsyncIOMotorClient(mongo_url,UuidRepresentation = 'standard')
 db = client.TodoList
 collection = db.todo
 

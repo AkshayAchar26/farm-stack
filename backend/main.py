@@ -1,6 +1,7 @@
 from fastapi import FastAPI,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from model import Todo
+from config import get_settings
 from database import (
     fetch_all_todos,
     fetch_one_todo,
@@ -9,11 +10,17 @@ from database import (
     remove_todo
 )
 
+
+
 #fastAPI instance as app
 app = FastAPI()
 
+
+settings = get_settings()
+
+
 origins = [
-    "http://localhost:5173"
+    settings.origins
 ]
 
 app.add_middleware(
